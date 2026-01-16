@@ -13,23 +13,26 @@ struct ContentView: View {
         ToDoItem(title: "Learn SwiftUI", priority: "High", isCompleted: false),
         ToDoItem(title: "Do Assignment 6", priority: "Medium", isCompleted: false)
     ]
-
+    
     @State private var showAddTaskSheet: Bool = false
     @State private var selectedFilter: String = "All"
-
+    
     var body: some View {
-        VStack(spacing: 16) {
-
+        NavigationStack {
+            VStack(spacing: 16) {
+                
                 Text("Tasks count: \(tasks.count)")
-
+                
                 Button("Add Task") {
                     tasks.append(
                         ToDoItem(title: "New Task", priority: "Low", isCompleted: false)
                     )
                 }
-
+                
             }
-        .padding()
+            .padding()
+            .navigationTitle("My Tasks")
+        }
     }
 }
 
