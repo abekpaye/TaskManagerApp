@@ -34,11 +34,33 @@ struct ContentView: View {
                     .padding(.horizontal)
                     .padding(.top, 8)
                 
-                Button("Add Task") {
-                    tasks.append(
-                        ToDoItem(title: "New Task", priority: "Low", isCompleted: false)
-                    )
+                VStack(spacing: 12) {
+                    ForEach(tasks) { task in
+                        HStack(spacing: 12) {
+
+                            Image(systemName: task.isCompleted ? "checkmark.circle.fill" : "circle")
+                                .foregroundColor(task.isCompleted ? .green : .gray)
+
+                            Text(task.title)
+                                .strikethrough(task.isCompleted)
+                                .foregroundColor(task.isCompleted ? .secondary : .primary)
+
+                            Spacer()
+
+                            Text(task.priority)
+                                .font(.caption)
+                                .padding(.vertical, 6)
+                                .padding(.horizontal, 10)
+                                .background(.thinMaterial)
+                                .cornerRadius(8)
+                        }
+                        .padding()
+                        .background(.regularMaterial)
+                        .cornerRadius(16)
+                        .shadow(radius: 2)
+                    }
                 }
+                .padding(.horizontal)
                 Spacer()
             }
             .padding()
